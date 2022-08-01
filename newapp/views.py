@@ -174,6 +174,8 @@ class ResumedetailView(APIView):
 
 class JobApplication(viewsets.ModelViewSet):
     queryset = Jobapplication.objects.all()
+    authentication_classes  = []
+    permission_classes = []
     serializer_class = ApplicationSerializer
 
 # class EditResumeView(APIView):
