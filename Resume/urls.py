@@ -14,9 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 # from django import views
-# from django.conf.urls import include
+from django.conf.urls import include
 from django.contrib import admin
-from django.urls import path
+from django.urls import  path
 from newapp.views import *
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -42,5 +42,6 @@ urlpatterns = [
     path('api/alldata/',ResumeListView.as_view()),
     path('api/resume/<int:id>/',ResumedetailView.as_view()),
     # path('api/edit/<int:id>/',EditResumeView.as_view()),
+    path("newapp/", include("newapp.urls")),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -44,3 +44,5 @@ class UserAdmin(admin.ModelAdmin):
     inlines = [ExperienceAdmin,EducationModelAdmin]
 
 admin.site.register(UserInformations,UserAdmin)
+
+admin.site.register(Jobapplication)

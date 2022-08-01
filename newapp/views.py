@@ -5,6 +5,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import  AllowAny
 from django.contrib.auth import authenticate
+from rest_framework import viewsets
+
 
 
 class RegisterUserView(APIView):
@@ -170,7 +172,9 @@ class ResumedetailView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-
+class JobApplication(viewsets.ModelViewSet):
+    queryset = Jobapplication.objects.all()
+    serializer_class = ApplicationSerializer
 
 # class EditResumeView(APIView):
 #     def patch(self, request,id):
@@ -185,6 +189,11 @@ class ResumedetailView(APIView):
 #                 serializer.save()
 #             return Response(serializer.data, status=status.HTTP_205_RESET_CONTENT)
 #         return Response(serializer.errors,status=status.HTTP_404_NOT_FOUND)
+
+
+
+
+
 
 
 

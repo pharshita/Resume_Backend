@@ -32,7 +32,7 @@ class UserInformations(models.Model):
     pin_code = models.CharField(max_length=8,blank=True,null=True)
     email = models.EmailField()
     social_links = models.URLField(blank=True,null=True)
-    skills = models.ManyToManyField(SkillsModel,blank=True,null=True)
+    skills = models.ManyToManyField(SkillsModel)
     profile_summary = models.TextField(blank=True,null=True)
 
     def __str__(self) -> str:
@@ -65,3 +65,16 @@ class EducationModel(models.Model):
 
     def __str__(self) -> str:
         return self.school_name
+
+
+class Jobapplication(models.Model):
+    full_name = models.CharField(max_length=120, blank=True, null=True)
+    email = models.EmailField(null=True, blank=True)
+    phone_number = models.IntegerField(null=True, blank=True)
+    resume = models.FileField(upload_to='media')
+
+    def __str__(self):
+        return self.email
+        
+    def __repr__(self):
+        return '<Application %s>'% self.email
