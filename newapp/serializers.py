@@ -69,3 +69,8 @@ class ApplicationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Jobapplication
         fields = '__all__'
+
+class JobSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Job
+        fields = '__all__'
