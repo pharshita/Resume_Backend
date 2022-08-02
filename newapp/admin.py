@@ -46,3 +46,4 @@ class UserAdmin(admin.ModelAdmin):
 admin.site.register(UserInformations,UserAdmin)
 
 admin.site.register(Jobapplication)
+admin.site.register(Job)

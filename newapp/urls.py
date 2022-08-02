@@ -6,6 +6,7 @@ router = routers.DefaultRouter()
 
 
 router.register(r'jobs', JobApplication, basename='Job')
+router.register(r'listjob', JobList, basename='Joblist')
 
 
 urlpatterns = [

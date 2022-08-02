@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class User(AbstractUser):
@@ -78,3 +79,16 @@ class Jobapplication(models.Model):
         
     def __repr__(self):
         return '<Application %s>'% self.email
+        
+class Job(models.Model):
+    class Requirement(models.TextChoices):
+        PYTHON = 'python', _('Python Developer')
+        REACT = 'react', _('React Developer')
+    job_name = models.CharField(max_length=105,null=True, blank=True)
+    job_description = models.TextField(null=True, blank=True)
+    number_of_openings = models.IntegerField(null=True, blank=True)
+    experience_requride = models.IntegerField(validators=[MinValueValidator(0),MaxValueValidator(10 )], null=True, blank=True)
+    responsibilities = models.TextField(null=True, blank=True)
+    requirement = models.CharField(max_length=12, choices=Requirement.choices, default='python')
+    perks_and_benefits = models.TextField(null=True, blank=True)
+    skills_required = models.CharField(max_length=100, null=True, blank=True)

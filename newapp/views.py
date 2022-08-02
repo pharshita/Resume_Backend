@@ -178,6 +178,13 @@ class JobApplication(viewsets.ModelViewSet):
     permission_classes = []
     serializer_class = ApplicationSerializer
 
+class JobList(viewsets.ModelViewSet):
+    queryset = Job.objects.all()
+    authentication_classes  = []
+    permission_classes = []
+    serializer_class = JobSerializer
+
+
 # class EditResumeView(APIView):
 #     def patch(self, request,id):
 
