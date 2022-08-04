@@ -184,6 +184,11 @@ class JobList(viewsets.ModelViewSet):
     permission_classes = []
     serializer_class = JobSerializer
 
+class ContectUsForm(viewsets.ModelViewSet):
+    queryset = ContectUs.objects.all()
+    authentication_classes  = []
+    permission_classes = []
+    serializer_class = ContectusSerializer
 
 # class EditResumeView(APIView):
 #     def patch(self, request,id):
@@ -198,11 +203,6 @@ class JobList(viewsets.ModelViewSet):
 #                 serializer.save()
 #             return Response(serializer.data, status=status.HTTP_205_RESET_CONTENT)
 #         return Response(serializer.errors,status=status.HTTP_404_NOT_FOUND)
-
-
-
-
-
 
 
 
