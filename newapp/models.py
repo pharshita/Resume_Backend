@@ -33,7 +33,7 @@ class UserInformations(models.Model):
     pin_code = models.CharField(max_length=8,blank=True,null=True)
     email = models.EmailField()
     social_links = models.URLField(blank=True,null=True)
-    skills = models.ManyToManyField(SkillsModel)
+    skills = models.ManyToManyField(SkillsModel,blank=True,null=True)
     profile_summary = models.TextField(blank=True,null=True)
 
     def __str__(self) -> str:
