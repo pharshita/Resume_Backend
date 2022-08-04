@@ -74,3 +74,8 @@ class JobSerializer(serializers.ModelSerializer):
     class Meta:
         model = Job
         fields = '__all__'
+
+class ContectusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ContectUs
+        fields = '__all__'

@@ -1,3 +1,5 @@
+import email
+from unicodedata import name
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
@@ -92,3 +94,9 @@ class Job(models.Model):
     requirement = models.CharField(max_length=12, choices=Requirement.choices, default='python')
     perks_and_benefits = models.TextField(null=True, blank=True)
     skills_required = models.CharField(max_length=100, null=True, blank=True)
+
+class ContectUs(models.Model):
+    name = models.CharField(max_length=25, null=True, blank=True)
+    email = models.EmailField()
+    phone_number = models.IntegerField(null=True,blank=True)
+    message = models.TextField()
