@@ -193,7 +193,7 @@ class JobApplications(APIView):
             'Full name :',Name , '\n'
             'Contaact no. :',contact_no , '\n'
             'Email :',email)
-            mail = EmailMessage(subject,contact_message,from_email,['ramkrishna.mrdigito@gmail.com'])
+            mail = EmailMessage(subject,contact_message,from_email,['hr@bridgefix.co'])
             mail.attach(resume.name, resume.read(), resume.content_type)
             mail.send()
             serializer.save()
