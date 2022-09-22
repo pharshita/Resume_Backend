@@ -6,8 +6,8 @@ from rest_framework import status
 from rest_framework.permissions import  AllowAny
 from django.contrib.auth import authenticate
 from rest_framework import viewsets
-
-
+from django.core.mail import EmailMessage
+from django.conf import settings
 
 class RegisterUserView(APIView):
     permission_classes = (AllowAny,)
@@ -172,11 +172,33 @@ class ResumedetailView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-class JobApplication(viewsets.ModelViewSet):
-    queryset = Jobapplication.objects.all()
-    authentication_classes  = []
-    permission_classes = []
-    serializer_class = ApplicationSerializer
+class JobApplications(APIView):
+    permission_classes = (AllowAny,)
+    def get(self, request):
+        queryset = Jobapplication.objects.all()
+        serializer = ApplicationSerializer(queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        serializer = ApplicationSerializer(data= request.data)
+        if serializer.is_valid():
+            Name = request.data.get('full_name')
+            email = request.data.get('email')
+            contact_no = request.data.get('phone_number')
+            resume = request.data.get('resume')
+
+            subject = 'Job application'
+            from_email = settings.EMAIL_HOST_USER
+            contact_message = "%s %s %s %s %s via %s" % (
+            'Full name :',Name , '\n'
+            'Contaact no. :',contact_no , '\n'
+            'Email :',email)
+            mail = EmailMessage(subject,contact_message,from_email,['ramkrishna.mrdigito@gmail.com'])
+            mail.attach(resume.name, resume.read(), resume.content_type)
+            mail.send()
+            serializer.save()
+            return Response(serializer.data,status=status.HTTP_201_CREATED)
+        return Response(serializer.errors,status=status.HTTP_404_NOT_FOUND)
 
 class JobList(viewsets.ModelViewSet):
     queryset = Job.objects.all()
@@ -184,11 +206,19 @@ class JobList(viewsets.ModelViewSet):
     permission_classes = []
     serializer_class = JobSerializer
 
-class ContectUsForm(viewsets.ModelViewSet):
-    queryset = ContectUs.objects.all()
-    authentication_classes  = []
-    permission_classes = []
-    serializer_class = ContectusSerializer
+class ContectForm(APIView):
+    def get(self,request):
+        queryset = ContectUs.objects.all()
+        serializer = ContectusSerializer(queryset,many=True)
+        return Response(serializer.data,status=status.HTTP_200_OK)
+
+    def post(self,request):
+        serializer = ContectusSerializer(data= request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data,status=status.HTTP_201_CREATED)
+        return Response(serializer.errors,status=status.HTTP_404_NOT_FOUND)
+    
 
 # class EditResumeView(APIView):
 #     def patch(self, request,id):

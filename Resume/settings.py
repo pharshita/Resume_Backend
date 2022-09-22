@@ -25,6 +25,15 @@ SECRET_KEY = 'django-insecure-^+ot4m5v17t^3wnc165owidv_r)n%0clxlcfs+6o5mja@p^sic
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# Email backend
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'tmr.krishna98@gmail.com'
+EMAIL_HOST_PASSWORD = 'glddbcpoacykcqpe'
+EMAIL_USE_TLS = True
+
+
 ALLOWED_HOSTS=['*']
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = (
