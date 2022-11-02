@@ -16,7 +16,7 @@ Including another URLconf
 # from django import views
 from django.conf.urls import include
 from django.contrib import admin
-from django.urls import  path
+from django.urls import path
 from newapp.views import *
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -25,23 +25,23 @@ from rest_framework_simplejwt.views import (
 from newapp import views
 from django.conf import settings
 from django.conf.urls.static import static
+
 # from newapp.views import LoginView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/login/',TokenObtainPairView.as_view(),name ='token_obtain_pair'),
-    path('api/login/refresh/',TokenRefreshView.as_view(),name ='token_refresh'),
-    path('api/registers/',RegisterUserView.as_view(),name ='token_obtain_pair'),
-    path('api/updateuser/',UserDetailView.as_view()),
-    path('api/changepassword/',ChangePasswordView.as_view()),
+    path("admin/", admin.site.urls),
+    path("api/login/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path("api/login/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+    path("api/registers/", RegisterUserView.as_view(), name="token_obtain_pair"),
+    path("api/updateuser/", UserDetailView.as_view()),
+    path("api/changepassword/", ChangePasswordView.as_view()),
     # path('api/logout/', LogoutView.as_view(), name='auth_logout'),
-    path('api/user/',UserListView.as_view()),
-    path('api/education/',EducationListView.as_view()),
-    path('api/experience/',ExperienceListView.as_view()),
-    path('api/skills/',SkillListView.as_view()),
-    path('api/alldata/',ResumeListView.as_view()),
-    path('api/resume/<int:id>/',ResumedetailView.as_view()),
+    path("api/user/", UserListView.as_view()),
+    path("api/education/", EducationListView.as_view()),
+    path("api/experience/", ExperienceListView.as_view()),
+    path("api/skills/", SkillListView.as_view()),
+    path("api/alldata/", ResumeListView.as_view()),
+    path("api/resume/<int:id>/", ResumedetailView.as_view()),
     # path('api/edit/<int:id>/',EditResumeView.as_view()),
     path("newapp/", include("newapp.urls")),
-
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

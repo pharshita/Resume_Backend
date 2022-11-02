@@ -5,12 +5,12 @@ from .views import *
 router = routers.DefaultRouter()
 
 
-router.register(r'listjob', JobList, basename='Joblist')
+router.register(r"listjob", JobList, basename="Joblist")
 
 
 urlpatterns = [
-   path('', include(router.urls)),
-   path('api-auth/', include('rest_framework.urls')),
-   path('contect/',ContectForm.as_view(),name="contactform"),
-   path('jobs/',JobApplications.as_view(),name="jobs")
+    path("", include(router.urls)),
+    path("api-auth/", include("rest_framework.urls")),
+    path("contect/", ContectForm.as_view(), name="contactform"),
+    path("jobs/", JobApplications.as_view(), name="jobs"),
 ]

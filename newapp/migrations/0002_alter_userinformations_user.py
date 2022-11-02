@@ -8,13 +8,17 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('newapp', '0001_initial'),
+        ("newapp", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='userinformations',
-            name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='User', to=settings.AUTH_USER_MODEL),
+            model_name="userinformations",
+            name="user",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="User",
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
     ]
